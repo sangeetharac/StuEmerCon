@@ -4,13 +4,13 @@ Student Emergency Contact Information
 
 Planned Features
 
-user/admin aothorisation
+User/Admin authorisation
 Create/edit/delete entities(student,teacher,parent)
 Student information and detail views
 Teacher informaton
 Parent Emergency contact details
 
 
-## License
-[GNU General Public License v3](LICENSE)
+License
 
+https://github.com/sangeetharac/StuEmerCon/blob/master/LICENSE
