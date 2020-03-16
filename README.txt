@@ -1,8 +1,16 @@
-Event Log
-A Spring Boot application to track details of events being organized by organizations.
+Student Emergency Contact Information 
+
+  A Spring Boot application to maintain details of student's emergency contact information along with their health records.
+
 Planned Features
-Native/local authentication
-Create/edit/delete events
-Event listing and detail views
-Volunteer tracking
-Summary reporting
+
+user/admin aothorisation
+Create/edit/delete entities(student,teacher,parent)
+Student information and detail views
+Teacher informaton
+Parent Emergency contact details
+
+
+## License
+[GNU General Public License v3](LICENSE)
+
