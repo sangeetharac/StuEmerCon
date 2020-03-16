@@ -1,0 +1,9 @@
+{
+  "stuemerconApp": {
+    "ParentOrGuardien": {
+      "null": "",
+      "PARENT": "PARENT",
+      "GUARDIAN": "GUARDIAN"
+    }
+  }
+}

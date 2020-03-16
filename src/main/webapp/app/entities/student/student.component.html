@@ -1,0 +1,103 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="stuemerconApp.student.home.title">Students</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-student" [routerLink]="['/student/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="stuemerconApp.student.home.createLabel">
+            Create a new Student
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="students?.length === 0">
+        <span jhiTranslate="stuemerconApp.student.home.notFound">No students found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="students?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="stuemerconApp.student.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastName"><span jhiTranslate="stuemerconApp.student.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="grade"><span jhiTranslate="stuemerconApp.student.grade">Grade</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="gender"><span jhiTranslate="stuemerconApp.student.gender">Gender</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="birthDate"><span jhiTranslate="stuemerconApp.student.birthDate">Birth Date</span> <fa-icon icon="sort"></fa-icon></th>
+<!--                <th scope="col"  jhiSortBy="emr1FirstName"><span jhiTranslate="stuemerconApp.student.emr1FirstName">Emr 1 First Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr1LastName"><span jhiTranslate="stuemerconApp.student.emr1LastName">Emr 1 Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr1RelationShip"><span jhiTranslate="stuemerconApp.student.emr1RelationShip">Emr 1 Relation Ship</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr1Email"><span jhiTranslate="stuemerconApp.student.emr1Email">Emr 1 Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr1PhoneNo"><span jhiTranslate="stuemerconApp.student.emr1PhoneNo">Emr 1 Phone No</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr2FirstName"><span jhiTranslate="stuemerconApp.student.emr2FirstName">Emr 2 First Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr2LastName"><span jhiTranslate="stuemerconApp.student.emr2LastName">Emr 2 Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr2RelationShip"><span jhiTranslate="stuemerconApp.student.emr2RelationShip">Emr 2 Relation Ship</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr2Email"><span jhiTranslate="stuemerconApp.student.emr2Email">Emr 2 Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emr2PhoneNo"><span jhiTranslate="stuemerconApp.student.emr2PhoneNo">Emr 2 Phone No</span> <fa-icon icon="sort"></fa-icon></th>
+-->
+                    <th scope="col"  jhiSortBy="parent.id"><span jhiTranslate="stuemerconApp.student.parent">Parent</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="teacher.id"><span jhiTranslate="stuemerconApp.student.teacher">Teacher</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let student of students ;trackBy: trackId">
+                    <td><a [routerLink]="['/student', student.id, 'view']">{{ student.id }}</a></td>
+                    <td>{{ student.firstName }}</td>
+                    <td>{{ student.lastName }}</td>
+                    <td>{{ student.grade }}</td>
+                    <td jhiTranslate="{{ 'stuemerconApp.Gender.' + student.gender }}">{{ student.gender }}</td>
+                    <td>{{ student.birthDate }}</td>
+<!--                    <td>{{ student.emr1FirstName }}</td>
+                    <td>{{ student.emr1LastName }}</td>
+                    <td>{{ student.emr1RelationShip }}</td>
+                    <td>{{ student.emr1Email }}</td>
+                    <td>{{ student.emr1PhoneNo }}</td>
+                    <td>{{ student.emr2FirstName }}</td>
+                    <td>{{ student.emr2LastName }}</td>
+                    <td>{{ student.emr2RelationShip }}</td>
+                    <td>{{ student.emr2Email }}</td>
+                    <td>{{ student.emr2PhoneNo }}</td>
+-->
+                    <td>
+                        <div *ngIf="student.parent">
+                            <a [routerLink]="['/parent', student.parent?.id, 'view']" >{{ student.parent?.firstName + ',' + student.parent?.lastName}}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="student.teacher">
+                            <a [routerLink]="['/teacher', student.teacher?.id, 'view']" >{{ student.teacher?.firstName + ',' + student.teacher?.lastName }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/student', student.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/student', student.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(student)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

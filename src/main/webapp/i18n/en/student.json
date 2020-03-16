@@ -1,0 +1,38 @@
+{
+  "stuemerconApp": {
+    "student": {
+      "home": {
+        "title": "Students",
+        "createLabel": "Create a new Student",
+        "createOrEditLabel": "Create or edit a Student",
+        "notFound": "No Students found"
+      },
+      "created": "A new Student is created with identifier {{ param }}",
+      "updated": "A Student is updated with identifier {{ param }}",
+      "deleted": "A Student is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Student {{ id }}?"
+      },
+      "detail": {
+        "title": "Student"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "grade": "Grade",
+      "gender": "Gender",
+      "birthDate": "Birth Date",
+      "emr1FirstName": "Emr 1 First Name",
+      "emr1LastName": "Emr 1 Last Name",
+      "emr1RelationShip": "Emr 1 Relation Ship",
+      "emr1Email": "Emr 1 Email",
+      "emr1PhoneNo": "Emr 1 Phone No",
+      "emr2FirstName": "Emr 2 First Name",
+      "emr2LastName": "Emr 2 Last Name",
+      "emr2RelationShip": "Emr 2 Relation Ship",
+      "emr2Email": "Emr 2 Email",
+      "emr2PhoneNo": "Emr 2 Phone No",
+      "parent": "Parent",
+      "teacher": "Teacher"
+    }
+  }
+}
